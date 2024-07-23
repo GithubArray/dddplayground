@@ -24,6 +24,8 @@ import se.citerus.dddsample.interfaces.booking.facade.BookingServiceFacade;
 import se.citerus.dddsample.interfaces.booking.facade.internal.BookingServiceFacadeImpl;
 import se.citerus.dddsample.interfaces.booking.web.CargoAdminController;
 import se.citerus.dddsample.interfaces.handling.file.UploadDirectoryScanner;
+import se.citerus.dddsample.interfaces.playground.PlaygroundService;
+import se.citerus.dddsample.interfaces.playground.PlaygroundServiceImpl;
 import se.citerus.dddsample.interfaces.tracking.CargoTrackingController;
 import se.citerus.dddsample.interfaces.tracking.TrackCommandValidator;
 import se.citerus.dddsample.interfaces.tracking.ws.CargoTrackingRestService;
@@ -113,5 +115,13 @@ public class InterfacesApplicationContext implements WebMvcConfigurer {
         threadPoolTaskScheduler.initialize();
         threadPoolTaskScheduler.scheduleAtFixedRate(scanner, 5000);
         return threadPoolTaskScheduler;
+    }
+
+    @Autowired
+    PlaygroundService playgroundService;
+
+    @Bean
+    public PlaygroundService playgroundService() {
+        return new PlaygroundServiceImpl();
     }
 }
